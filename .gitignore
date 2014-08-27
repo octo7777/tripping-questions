@@ -1,5 +1,6 @@
 atlassian-ide-plugin.xml
-complete.iml
+*.iml
 .idea
 build
 .gradle
+gradle
