@@ -18,9 +18,9 @@ public class UserCommands {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public BigInteger addUser(@RequestBody User user) {
-        userRepository.save(user);
+        return userRepository.save(user).getId();
     }
 }

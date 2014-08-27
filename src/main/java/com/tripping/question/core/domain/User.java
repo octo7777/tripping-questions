@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -16,6 +17,7 @@ public class User {
     private BigInteger id;
 
     private String name;
+    @Indexed(unique = true)
     private String email;
     private String passwordHash;
     private long points;
