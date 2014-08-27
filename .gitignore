@@ -2,4 +2,4 @@ atlassian-ide-plugin.xml
 complete.iml
 .idea
 build
-gradle
+.gradle
