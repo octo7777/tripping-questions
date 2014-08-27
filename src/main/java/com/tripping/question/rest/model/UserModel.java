@@ -1,0 +1,21 @@
+package com.tripping.question.rest.model;
+
+/**
+ * Created by piotrok on 8/27/14.
+ */
+public class UserModel {
+
+    private String name;
+
+    public UserModel(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
