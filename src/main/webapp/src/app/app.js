@@ -15,6 +15,10 @@ gamesApp.config(['$routeProvider',
                  templateUrl: 'game_1.html',
                  //controller: ''
                }).
+               when('/createUser/', {
+                 templateUrl: 'createUser.html',
+                 controller: 'createUserCtr'
+               }).
                otherwise({
                  redirectTo: 'error.html'
                });
@@ -33,6 +37,16 @@ gamesAppControllers.controller('gamesDataCtr', ['$scope', 'Users', function($sco
 
   $scope.users = Users.query()
 }]);
+
+gamesAppControllers.controller('createUserCtr', ['$scope', '$http', function($scope, $http) {
+    $scope.list = [];
+    $scope.submitCreateUser = function() {
+        var data=$scope.fields;
+        $scope.list.push(data);
+        $http.post('services/users', data);
+    }
+}]);
+
 
 var usersService = angular.module('usersService', ['ngResource']);
 
