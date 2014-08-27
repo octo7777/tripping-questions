@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tripping.question.core.domain.User;
 import com.tripping.question.core.repository.UserRepository;
+import com.tripping.question.rest.model.UserCreateModel;
 
 @Controller
 @RequestMapping("/users")
@@ -20,7 +20,7 @@ public class UserCommands {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public BigInteger addUser(@RequestBody User user) {
-        return userRepository.save(user).getId();
+    public BigInteger addUser(@RequestBody UserCreateModel userModel) {
+        return userRepository.save(userModel.toUser()).getId();
     }
 }
