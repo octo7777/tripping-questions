@@ -32,14 +32,6 @@ gamesAppControllers.controller('gamesDataCtr', ['$scope', 'Users', function($sco
   ];
 
   $scope.users = Users.query()
-//  $scope.users = [
-//      {'name': 'KamilJ',
-//       'points' : -2354},
-//      {'name': 'TomaszL',
-//       'points' : 100},
-//      {'name': 'MichalO',
-//       'points' : 20}
-//    ];
 }]);
 
 var usersService = angular.module('usersService', ['ngResource']);
