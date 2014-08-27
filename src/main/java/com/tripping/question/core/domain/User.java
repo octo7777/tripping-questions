@@ -21,6 +21,8 @@ public class User {
     private long points;
     private List<String> roles;
 
+    protected User(){}
+
     public User(String name, String email, String passwordHash, String role) {
         this.name = name;
         this.email = email;
