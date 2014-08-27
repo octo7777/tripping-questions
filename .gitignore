@@ -1,5 +1,5 @@
-atlassian-ide-plugin.xml
 *.iml
+atlassian-ide-plugin.xml
 .idea
 build
 .gradle
