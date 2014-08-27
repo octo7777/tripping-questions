@@ -14,10 +14,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
     private UserDetailsServiceImplementation userDetailsServiceImplementation;
 
-  @Override
-  protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    protected void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+      if (userRepository.count() == 0) {
+          userRepository.save(new User("Bolek", "bolek@tripper.com", "pass", Roles.ADMIN));
+      }
       DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
       daoAuthenticationProvider.setUserDetailsService(userDetailsServiceImplementation);
 
@@ -28,11 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //            .withUser("Lolek").password("pass").roles("USER");
   }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeUrls()
-        .anyRequest().anonymous()
-        .and()
-        .httpBasic();
-  }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeUrls()
+            .anyRequest().anonymous()
+            .and()
+            .httpBasic();
+    }
 }
