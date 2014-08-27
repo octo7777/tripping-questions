@@ -1,6 +1,7 @@
 var gamesApp = angular.module('gamesApp', [
    'ngRoute',
    'gamesAppControllers',
+   'game1Controller',
    'usersService'
 ]);
 
@@ -13,7 +14,7 @@ gamesApp.config(['$routeProvider',
                }).
                when('/game_1/', {
                  templateUrl: 'game_1.html',
-                 //controller: ''
+                 controller: 'game1Controller'
                }).
                when('/createUser/', {
                  templateUrl: 'createUser.html',
@@ -62,11 +63,27 @@ gamesAppControllers.controller('createUserCtr', ['$scope', '$http', function($sc
 }]);
 
 
+
+var game1Controller = angular.module('game1Controller', []);
+
+game1Controller.controller('game1Controller', ['$scope', '$http', 'Questions', function($scope, $http, Questions) {
+  $scope.users = Questions.query()
+}]);
+
+
+
 var usersService = angular.module('usersService', ['ngResource']);
 
 usersService.factory('Users', ['$resource',
   function($resource){
     return $resource('services/users', {}, {
+      query: {method:'GET', params:{}, isArray:true}
+    });
+  }]);
+
+usersService.factory('Questions', ['$resource',
+  function($resource){
+    return $resource('services/questions/game_1', {}, {
       query: {method:'GET', params:{}, isArray:true}
     });
   }]);

@@ -66,11 +66,13 @@
 
 	<br/>
 
+    <table>
 	<form ng-submit="submitLoginUser()" ng-show="!currentUser.isLogged">
-		  <input type="text" ng-model="fields.user" name="email" />
-		  <input type="password" ng-model="fields.password" name="password" />
-		  <input type="submit" id="submit" value="Submit" />
+		  <tr><td>Login:</td><td><input type="text" ng-model="fields.user" name="email" /></td></tr>
+          <tr><td>Password:</td><td><input type="password" ng-model="fields.password" name="password" /></td></tr>
+          <tr><td colspan = "2"><input type="submit" id="submit" value="Login" /></td></tr>
 	</form>
+    </table>
 
 	<b ng-show="currentUser.isLogged">Logged user: {{currentUser.email}} </b>
 </div>
