@@ -1,71 +1,59 @@
 <nav class="navbar navbar-inverse" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">SIQuestion</a>
-        </div>
-        <div class="collapse navbar-collapse" >
-            <ul class="nav navbar-nav">
-                <li ng-repeat="game in games">
-                    <a href="#/{{game.id}}">{{game.name}}</a>
-                </li>
-                <li>
-                    <a href="#/createUser">Register</a>
-                </li>
-            </ul>
-
-            <div class="btn-group" dropdown is-open="status.isopen">
-                <button type="button" class="btn btn-primary dropdown-toggle">
-                    WHY U NO WORK?! <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SIQuestion</a>
+    </div>
+    <div class="collapse navbar-collapse" >
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Choose game<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="game in games">
+              <a href="#/{{game.id}}">{{game.name}}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="currentUser.isLogged"><span class="label label-danger">Logged user: {{currentUser.email}} </span></li>
+        <li ng-show="!currentUser.isLogged"><span class="label label-danger">Anonymous user.</span></li>
+        <li>
+          <a href="#">{{ user.username }}</a>
+        </li>
+        <li ng-show="currentUser.isLogged">
+          <form action="{% url 'logout' %}" method="GET" class="navbar-form navbar-left" >
+            <button type="submit" class="btn btn-default">Logout</button>
+          </form>
+        </li>
+        <li ng-show="!currentUser.isLogged">
+          <form ng-submit="submitLoginUser()" class="navbar-form navbar-left" >
+            <div class="form-group">
+              <input type="text" ng-model="fields.user" name="email"  class="form-control" placeholder="email">
+              <input type="password" ng-model="fields.password" name="password" class="form-control" placeholder="password">
+              <input type="submit" id="submit" value="Login" class="btn btn-default" />
+              <input type="submit" id="register" value="Register" class="btn btn-default" />
             </div>
-
-            <ul class="nav navbar-nav navbar-right">
-
-                <li ng-show="currentUser.isLogged"><span class="label label-danger">Logged user: {{currentUser.email}} </span></li>
-                <li ng-show="!currentUser.isLogged"><span class="label label-danger">Anonymous user.</span></li>
-
-                <li><a href="#">{{ user.username }}</a></li>
-                <li ng-show="currentUser.isLogged">
-                    <form action="{% url 'logout' %}" method="GET" class="navbar-form navbar-left" >
-                        <button type="submit" class="btn btn-default">Logout</button>
-                    </form>
-                </li>
-                <li ng-show="!currentUser.isLogged">
-                    <form ng-submit="submitLoginUser()" class="navbar-form navbar-left" >
-                        <div class="form-group">
-                            <input type="text" ng-model="fields.user" name="email"  class="form-control" placeholder="email">
-                            <input type="password" ng-model="fields.password" name="password" class="form-control" placeholder="password">
-                            <input type="submit" id="submit" value="Login" class="btn btn-default" />
-                        </div>
-                    </form>
-                </li>
-            </ul>
-       </div>
+          </form>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
-
 <div class="container">
-    <div class="starter-template">
-        <table class="table" border="1">
-            <thead>
-                <tr>
-                    <th>User</th>
-                    <th>Points</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="user in users | orderBy:'points':true">
-                    <td class="field">{{user.name}} </td><td class="field">{{user.points}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="starter-template">
+    <table class="table" border="1">
+      <thead>
+      <tr>
+        <th>User</th>
+        <th>Points</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="user in users | orderBy:'points':true">
+        <td class="field">{{user.name}}</td>
+        <td class="field">{{user.points}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
-
