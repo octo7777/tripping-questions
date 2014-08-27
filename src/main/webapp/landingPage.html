@@ -1,14 +1,34 @@
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">SIQuestion</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="game in games">
+                    <a href="#/{{game.id}}">{{game.name}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <ul>
-        <li ng-repeat="game in games">
-            <p><a href="#/{{game.id}}">{{game.name}}</a></p>
-        </li>
-    </ul>
+<div class="container">
+    <div class="starter-template">
 
-    <table border="1">
-        <tr><td>User</td><td>Points</td></tr>
-        <tr ng-repeat="user in users | orderBy:'points':true">
-            <td>{{user.name}} </td><td> {{user.points}}</td>
-        </tr>
-    </table>
+        <table class="table" border="1">
+            <tr>
+                <th>User</th>
+                <th>Points</th>
+            </tr>
+            <tr ng-repeat="user in users | orderBy:'points':true">
+                <td>{{user.name}} </td><td> {{user.points}}</td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+
+
 
