@@ -40,7 +40,7 @@ gamesAppControllers.controller('landingPageCtr', ['$scope', '$http', 'Users', fu
   $scope.submitLoginUser = function() {
     var user = $scope.fields.user;
     var password = $scope.fields.password;
-    $http.post('login', {'username': user, 'password': password}).
+    $http.post('login/process', {'username': user, 'password': password}).
       success(function(data, status, headers, config) {
         $scope.currentUser.isLogged = true;
         $scope.currentUser.email = $scope.fields.user;
