@@ -1,6 +1,7 @@
 var gamesApp = angular.module('gamesApp', [
    'ngRoute',
-   'gamesAppControllers'
+   'gamesAppControllers',
+   'usersService'
 ]);
 
 gamesApp.config(['$routeProvider',
@@ -22,7 +23,7 @@ gamesApp.config(['$routeProvider',
 
 var gamesAppControllers = angular.module('gamesAppControllers', []);
 
-gamesAppControllers.controller('gamesDataCtr', function ($scope) {
+gamesAppControllers.controller('gamesDataCtr', ['$scope', 'Users', function($scope, Users) {
   $scope.games = [
     {'name': 'Game 1',
       'id' : 'game_1'},
@@ -30,12 +31,22 @@ gamesAppControllers.controller('gamesDataCtr', function ($scope) {
      'id' : 'game_2'}
   ];
 
-  $scope.users = [
-      {'name': 'KamilJ',
-       'points' : -2354},
-      {'name': 'TomaszL',
-       'points' : 100},
-      {'name': 'MichalO',
-       'points' : 20}
-    ];
-});
+  $scope.users = Users.query()
+//  $scope.users = [
+//      {'name': 'KamilJ',
+//       'points' : -2354},
+//      {'name': 'TomaszL',
+//       'points' : 100},
+//      {'name': 'MichalO',
+//       'points' : 20}
+//    ];
+}]);
+
+var usersService = angular.module('usersService', ['ngResource']);
+
+usersService.factory('Users', ['$resource',
+  function($resource){
+    return $resource('services/users', {}, {
+      query: {method:'GET', params:{}, isArray:true}
+    });
+  }]);
