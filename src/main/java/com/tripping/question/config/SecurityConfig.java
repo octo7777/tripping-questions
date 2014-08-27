@@ -1,6 +1,5 @@
 package com.tripping.question.config;
 
-import com.tripping.question.core.services.UserDetailsServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -8,6 +7,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import com.tripping.question.core.domain.User;
+import com.tripping.question.core.repository.UserRepository;
+import com.tripping.question.core.services.UserDetailsServiceImplementation;
 
 @EnableWebSecurity
 @Configuration
