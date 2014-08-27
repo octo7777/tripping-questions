@@ -49,7 +49,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
     ServletRegistration.Dynamic appServlet = servletContext.addServlet(
         "webservice", new DispatcherServlet(mvcContext));
     appServlet.setLoadOnStartup(1);
-    Set<String> mappingConflicts = appServlet.addMapping("/");
+    Set<String> mappingConflicts = appServlet.addMapping("/services");
 
     if (!mappingConflicts.isEmpty()) {
       for (String s : mappingConflicts) {
