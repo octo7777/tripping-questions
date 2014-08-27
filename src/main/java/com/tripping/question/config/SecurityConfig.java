@@ -66,6 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 Authentication authentication) throws IOException, ServletException {
                 response.sendError(HttpServletResponse.SC_OK);
             }
-        });
+        }).failureUrl("/nonusable");
     }
 }
