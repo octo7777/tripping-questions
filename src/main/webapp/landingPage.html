@@ -25,7 +25,6 @@
                 <td class="field">{{user.name}} </td><td class="field">{{user.points}}</td>
             </tr>
         </table>
-
     </div>
 </div>
 
@@ -37,3 +36,13 @@
 <br/>
 
 <a href="#/createUser">Register user</a>
+
+<br/>
+
+<form ng-submit="submitLoginUser()" ng-show="!currentUser.isLogged">
+    <input type="text" ng-model="fields.user" name="email" />
+    <input type="password" ng-model="fields.password" name="password" />
+    <input type="submit" id="submit" value="Submit" />
+</form>
+
+<b ng-show="currentUser.isLogged">>Logged user: {{currentUser.email}} </b>

@@ -9,7 +9,7 @@ gamesApp.config(['$routeProvider',
              $routeProvider.
                when('/', {
                  templateUrl: 'landingPage.html',
-                 controller: 'gamesDataCtr'
+                 controller: 'landingPageCtr'
                }).
                when('/game_1/', {
                  templateUrl: 'game_1.html',
@@ -27,15 +27,22 @@ gamesApp.config(['$routeProvider',
 
 var gamesAppControllers = angular.module('gamesAppControllers', []);
 
-gamesAppControllers.controller('gamesDataCtr', ['$scope', 'Users', function($scope, Users) {
+gamesAppControllers.controller('landingPageCtr', ['$scope', 'Users', function($scope, Users) {
+  $scope.currentUser = {isLogged : false, isAdmin : false};
   $scope.games = [
     {'name': 'Game 1',
       'id' : 'game_1'},
     {'name': 'Game 2',
      'id' : 'game_2'}
   ];
-
   $scope.users = Users.query()
+
+  $scope.submitLoginUser = function() {
+    $scope.currentUser.isLogged = true;
+    $scope.currentUser.email = $scope.fields.user;
+  }
+
+
 }]);
 
 gamesAppControllers.controller('createUserCtr', ['$scope', '$http', function($scope, $http) {
