@@ -1,0 +1,14 @@
+
+    <ul>
+        <li ng-repeat="game in games">
+            <p><a href="#/{{game.id}}">{{game.name}}</a></p>
+        </li>
+    </ul>
+
+    <table border="1">
+        <tr><td>User</td><td>Points</td></tr>
+        <tr ng-repeat="user in users | orderBy:'points':true">
+            <td>{{user.name}} </td><td> {{user.points}}</td>
+        </tr>
+    </table>
+
