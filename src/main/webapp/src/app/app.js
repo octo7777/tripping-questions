@@ -27,7 +27,7 @@ gamesApp.config(['$routeProvider',
 
 var gamesAppControllers = angular.module('gamesAppControllers', []);
 
-gamesAppControllers.controller('landingPageCtr', ['$scope', 'Users', function($scope, Users) {
+gamesAppControllers.controller('landingPageCtr', ['$scope', '$http', 'Users', function($scope, $http, Users) {
   $scope.currentUser = {isLogged : false, isAdmin : false};
   $scope.games = [
     {'name': 'Game 1',
@@ -38,8 +38,16 @@ gamesAppControllers.controller('landingPageCtr', ['$scope', 'Users', function($s
   $scope.users = Users.query()
 
   $scope.submitLoginUser = function() {
-    $scope.currentUser.isLogged = true;
-    $scope.currentUser.email = $scope.fields.user;
+    var user = $scope.fields.user;
+    var password = $scope.fields.password;
+    $http.post('login', {'username': user, 'password': password}).
+      success(function(data, status, headers, config) {
+        $scope.currentUser.isLogged = true;
+        $scope.currentUser.email = $scope.fields.user;
+      }).
+      error(function(data, status, headers, config) {
+
+      });
   }
 
 
@@ -49,7 +57,6 @@ gamesAppControllers.controller('createUserCtr', ['$scope', '$http', function($sc
     $scope.list = [];
     $scope.submitCreateUser = function() {
         var data=$scope.fields;
-        $scope.list.push(data);
         $http.post('services/users', data);
     }
 }]);
